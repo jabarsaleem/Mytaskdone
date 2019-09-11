@@ -1,0 +1,66 @@
+﻿body {
+    background-image: url(login.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+h1
+{
+    color:white;
+
+ font-size:30px;
+}
+h4 {
+    color: white;
+    text-align: center;
+    font-size: 50px;
+}
+
+#main {
+    padding-right: 150px;
+  
+    position: relative;
+    text-align: center;
+    min-height: 1px;
+  
+    padding-left: 150px;
+    margin-top: 10px;
+   
+}#id{
+
+ }
+.input {
+    border-radius: 30px;
+    height: 40px;
+    width: 300px;
+}
+#cap{
+    
+    font-family:'Century Gothic';
+    font-size:15px;
+  
+
+}
+label{
+    color:white;
+}
+
+.signup{
+   
+}
+.email {
+  
+   
+    position: relative;
+}
+#links{
+   color:white;
+   font-family:'Century Gothic';
+   font-size:large;
+   text-decoration:none;
+  
+
+}
+
+th,td{
+    color:white;
+}

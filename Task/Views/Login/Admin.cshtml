@@ -1,0 +1,119 @@
+﻿@model IPagedList<Task.Models.User>
+
+@{
+    ViewBag.Title = "Admin";
+}
+
+@using PagedList;
+@using PagedList.Mvc;
+
+<h4>Admin</h4>
+
+<div>
+        <h1>Welcome @Session["Emailaddress"].ToString()</h1>
+
+    </div>
+
+<h2>
+    @ViewBag.Message
+</h2>
+<div>
+<h3>@Html.ActionLink("Add New User", "Add")</h3>
+    </div>
+
+@using (Html.BeginForm("Admin", "Login", FormMethod.Post))
+{
+<div style="padding-top:30px; padding-bottom:30px">
+
+    <h1> Search</h1> @Html.TextBox("searchString")
+
+    <input id="Text1" type="submit" value="Filter" class="btn-primary" />
+</div>
+
+    <div class="row">
+        <table class="table" style="padding-top:0px">
+            <tr>
+
+
+                <th class="col-md-2">
+                    @Html.ActionLink("Name", "admin", new { sortby = ViewBag.SortName, seachby = Request.QueryString["searchby"], searchString = Request.QueryString["searchString"] })
+                </th>
+                <th class="col-md-1">
+                    @Html.DisplayNameFor(model => model.First().Password)
+                </th>
+                <th class="col-md-2">
+                    @Html.ActionLink("EmailAddress", "admin", new { sortby = ViewBag.Sortemail, seachby = Request.QueryString["searchby"], searchString = Request.QueryString["searchString"] })
+                </th>
+                <th class="col-md-1">
+                    @Html.ActionLink("Role", "admin", new { sortby = ViewBag.Sortrole, seachby = Request.QueryString["searchby"], searchString = Request.QueryString["searchString"] })
+                </th>
+
+                <th class="col-md-1">
+                    @Html.DisplayNameFor(model => model.First().isactive)
+                </th>
+                <th class="col-md-1">
+
+
+                    @Html.DisplayNameFor(model => model.First().isblock)
+                </th>
+
+
+
+                <th class="col-md-4">
+                    <html>
+                    Actions
+                </html>
+
+
+            </th>
+        </tr>
+
+
+        @Styles.Render("~/Resources/task.css")
+
+        @foreach (var item in Model)
+        {
+            <tr>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Password)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Emailaddress)
+                </td>
+
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Role)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.isactive)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.isblock)
+                </td>
+                <td>
+
+
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })|
+
+                    @Html.ActionLink("Block", "Block", new { id = item.Id })|
+                    @Html.ActionLink("Unblock", "Unblock", new { id = item.Id })|
+                    @Html.ActionLink("Send passwordcode", "Forgotpassword",new { Email=item.Emailaddress})
+
+
+</tr>
+        }
+
+
+
+    </table>
+
+</div>}
+
+@Html.PagedListPager(Model, i => Url.Action("Admin", "login", new { i, search = Request.QueryString["search"] }))

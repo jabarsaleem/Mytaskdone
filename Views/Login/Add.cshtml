@@ -1,0 +1,107 @@
+﻿
+
+
+@model Task.Models.User
+
+@{
+    ViewBag.Title = "Add User";
+}
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div>
+
+        <h2>
+            @ViewBag.Message
+        </h2>
+    </div>
+
+    <div class="form-horizontal" style="text-align:center">
+        <h1 style="font-family:'Century Gothic'" ;>Add New User</h1>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="row">
+            <div class="form-group">
+
+                <div class="col-md-3" style="left:280px">
+                    <label style="font-size:20px; font-family:'Century Gothic'" ;>Enter Name</label>
+                </div>
+                <div class=" col-md-6" style="left:120px" ;>
+                    @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "signup" } })
+                    @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+
+
+
+
+            <div class="form-group">
+
+                <div class="col-md-3" style="left:320px">
+                    <label style="font-size:20px; font-family:'Century Gothic'" ;>Enter EmailAddrress</label>
+                </div>
+                <div class=" col-md-6" style="left:120px" ;>
+                    @Html.EditorFor(model => model.Emailaddress, new { htmlAttributes = new { @class = "signup" } })
+                    @Html.ValidationMessageFor(model => model.Emailaddress, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+
+            <div class="form-group">
+
+                <div class="col-md-3" style="left:300px">
+                    <label style="font-size:20px; font-family:'Century Gothic'" ;>Enter Password</label>
+                </div>
+                <div class=" col-md-6" style="left:120px" ;>
+                    @Html.PasswordFor(model => model.Password, new { htmlAttributes = new { @class = "signup" } })
+                    @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+
+                <div class="col-md-3" style="left:340px">
+                    <label style="font-size:20px; font-family:'Century Gothic'" ;>Enter Confirm Password</label>
+                </div>
+                <div class=" col-md-6" style="left:120px" ;>
+                    @Html.EditorFor(model => model.confirmpassword, new { htmlAttributes = new { @class = "signup" } })
+                    @Html.ValidationMessageFor(model => model.confirmpassword, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+
+                <div class="col-md-3" style="left:290px">
+                    <label style="font-size:20px; font-family:'Century Gothic'" ;>Select Role</label>
+                </div>
+                <div class=" col-md-4" style="left:120px" ;>
+                    <select class="form-control" id="role" name="role" style="margin-left:200px; width:180px">
+
+                        <option>User</option>
+                        <option>Admin</option>
+                    </select>
+
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-12" style="padding-top:20px">
+                    <input type="submit" value="Add" class="btn btn-default" style="height:30px;height:40px;width:300px;font-size:25px;background-color:darkslategrey;color:white;border-radius:20px;padding-top:-10px; text-align:center " font-family:'Century Gothic'"; />
+                </div>
+            </div>
+        </div>
+
+
+        <div>
+
+
+        </div>
+
+    </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

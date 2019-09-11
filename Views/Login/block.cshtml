@@ -1,0 +1,52 @@
+﻿@model  Task.Models.User
+@{
+    ViewBag.Title = "Block";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to block this?</h3>
+<div>
+    <h1>Block User</h1>
+
+    <h2>
+        @ViewBag.Message
+    </h2>
+
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Emailaddress)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Emailaddress)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Role)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Role)
+        </dd>
+
+
+
+
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Block" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "admin")
+        </div>
+    }

@@ -1,0 +1,103 @@
+﻿@model IPagedList<Task.Models.User>
+
+@{
+    ViewBag.Title = "User";
+}
+
+@using PagedList;
+@using PagedList.Mvc;
+
+
+@if (Session["id"] != null)
+{
+
+    <div>
+        <h1>Welcome @Session["Emailaddress"].ToString()</h1>
+
+    </div>
+
+    <div>
+
+        <h4>    @Html.ActionLink("Send Reset Email", "Forgotpassword", new { email = ViewBag.email })</h4>
+    </div>
+
+
+    <h4>
+        @ViewBag.Message
+    </h4>
+
+
+
+    using (Html.BeginForm("Userlogin", "Login", FormMethod.Post))
+    {
+
+        <h1>List of Block Users</h1>
+
+        <div class="col-lg-6">
+            <h1> Search</h1> @Html.TextBox("searchString")
+
+            <input id="Text1" type="submit" value="Filter" class="btn-primary" />
+
+        </div>
+
+
+
+
+        <div class="row">
+            <table class="table" style="padding-top:0px">
+
+                <tr>
+
+
+                    <th class="col-md-2">
+                        @Html.ActionLink("Name", "Userlogin", new { sortby = ViewBag.SortName, seachby = Request.QueryString["searchby"], searchString = Request.QueryString["searchString"] })
+                    </th>
+
+                    <th class="col-md-2">
+                        @Html.ActionLink("EmailAddress", "Userlogin", new { sortby = ViewBag.Sortemail, seachby = Request.QueryString["searchby"], searchString = Request.QueryString["searchString"] })
+                    </th>
+
+
+                    <th class="col-md-1">
+                        @Html.DisplayNameFor(model => model.First().isactive)
+                    </th>
+                    <th class="col-md-1">
+
+
+                        @Html.DisplayNameFor(model => model.First().isblock)
+                    </th>
+                </tr>
+
+
+                @Styles.Render("~/Resources/task.css")
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Emailaddress)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.isactive)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.isblock)
+                        </td>
+
+
+                    </tr>
+                }
+
+            </table>
+
+
+        </div>
+    }
+
+    @Html.PagedListPager(Model, i => Url.Action("Userlogin", "login", new { i, search = Request.QueryString["search"] }))
+}
